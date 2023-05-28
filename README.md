@@ -124,10 +124,140 @@ Output :-
 
 ![tenor](https://github.com/023lawrence/Anime-recommendation/assets/66831315/2681c7f9-5493-4bf1-ad07-dd47eb16f689)
 
+code :- 
+```
+# deleting anime with 0 rating
+anime_df=anime_df[~np.isnan(anime_df["rating"])]
+
+# filling mode value for genre and type
+anime_df['genre'] = anime_df['genre'].fillna(
+anime_df['genre'].dropna().mode().values[0])
+
+anime_df['type'] = anime_df['type'].fillna(
+anime_df['type'].dropna().mode().values[0])
+
+#checking if all null values are filled
+anime_df.isnull().sum()
+```
+Output :- 
+
+![6](https://github.com/023lawrence/Anime-recommendation/assets/66831315/e552e849-c995-41a8-8bff-44b115315924)
+
+**This will help to delete anime with 0 rating and fill the mode value for in genre in case of missing **
+
+### Filling Nan values
+In general the value -1 suggests the user did not register a raiting so we will foll with Nan values.
+
+code :- 
+```
+rating_df['rating'] = rating_df['rating'].apply(lambda x: np.nan if x==-1 else x)
+rating_df.head(20)
+```
+Output :- 
+
+![7](https://github.com/023lawrence/Anime-recommendation/assets/66831315/c6dc7622-b890-47cb-9993-1e910e9dae3b)
+
+### Pivot Table for similarity
+We will create a pivot table of users as rows and tv show names as columns. The pivot table will help us will be analized for the calcuations of similarity.
+
+code :- 
+```
+pivot = rated_anime.pivot_table(index=['user_id'], columns=['name'], values='rating')
+pivot.head()
+```
+Output :-
+
+![8](https://github.com/023lawrence/Anime-recommendation/assets/66831315/6ae9bf24-4801-4f1f-bd51-b912f675ccbf)
+
+### Now we will change our pivot table in the following steps:
+1. Value normalization.
+2. Filling Nan values as 0.
+3. Transposing the pivot for the next step.
+4. Dropping columns with the values of 0 (unrated).
+5. Using scipy package to convert to sparse matrix format for the similarity computation.
+
+code :- 
+```
+# step 1
+pivot_n = pivot.apply(lambda x: (x-np.mean(x))/(np.max(x)-np.min(x)), axis=1)
+
+# step 2
+pivot_n.fillna(0, inplace=True)
+
+# step 3
+pivot_n = pivot_n.T
+
+# step 4
+pivot_n = pivot_n.loc[:, (pivot_n != 0).any(axis=0)]
+
+# step 5
+piv_sparse = sp.sparse.csr_matrix(pivot_n.values)
+```
+
 ## . Cosine Similarity Model
-## . Conclusion
+
+![9](https://github.com/023lawrence/Anime-recommendation/assets/66831315/413503b2-4212-4ab7-ba3c-91a42d2b762b)
+![10](https://github.com/023lawrence/Anime-recommendation/assets/66831315/54104b55-7822-4e76-a560-849253a3fd49)
+
+**Cosine similarity measures the similarity between two vectors of an inner product space. It is measured by the cosine of the angle between two vectors and determines whether two vectors are pointing in roughly the same direction.**
+
+code :- 
+
+```
+#model based on anime similarity
+anime_similarity = cosine_similarity(piv_sparse)
+
+#Df of anime similarities
+ani_sim_df = pd.DataFrame(anime_similarity, index = pivot_n.index, columns = pivot_n.index)
+```
+code :- 
+```
+def anime_recommendation(ani_name):
+    """
+    This function will return the top 5 shows with the highest cosine similarity value and show match percent
+    
+    example:
+    >>>Input: 
+    
+    anime_recommendation('Death Note')
+    
+    >>>Output: 
+    
+    Recommended because you watched Death Note:
+
+                    #1: Code Geass: Hangyaku no Lelouch, 57.35% match
+                    #2: Code Geass: Hangyaku no Lelouch R2, 54.81% match
+                    #3: Fullmetal Alchemist, 51.07% match
+                    #4: Shingeki no Kyojin, 48.68% match
+                    #5: Fullmetal Alchemist: Brotherhood, 45.99% match 
+
+               
+    """
+    
+    number = 1
+    print('Recommended because you watched {}:\n'.format(ani_name))
+    for anime in ani_sim_df.sort_values(by = ani_name, ascending = False).index[1:6]:
+        print(f'#{number}: {anime}, {round(ani_sim_df[anime][ani_name]*100,2)}% match')
+        number +=1  
+```	
+Code :- 
+```
+anime_recommendation('Dragon Ball Z')
+```
+Output :- 
+
+![11](https://github.com/023lawrence/Anime-recommendation/assets/66831315/fe12403b-17ae-4ebb-8bc4-06d554d814ee)
+
+## . Conclusion ✔
+
+In this notebook, a recommendation algorithm based on cosine similarity was created. For further analysis i sugggest prediction based on genres, or a user-user approach or use K- Means Clustering.
+
+All the files, datasets, workbooks, and icons displayed above have been uploaded. Fell free to use the resources from this project for your future projects. Give this project and  a star if you enjoy it, or just let me know. :)
 
 
+[Go to my LinkedIn](https://www.linkedin.com/in/lawrence-mondal/) 🌐
+
+![giphy](https://github.com/023lawrence/Anime-recommendation/assets/66831315/d5c4f371-1621-494a-b7f6-f9e2541def7c)
 
 
 	
