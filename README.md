@@ -13,7 +13,7 @@ This data set contains information on user preference data from 73,516 users on 
 
 ![a0eeabadf50400a7ebd09ca29efc97db](https://github.com/023lawrence/Anime-recommendation/assets/66831315/86d1f109-a41c-4a9d-92bf-8b0fbe97bac4)
 
-## Data Id
+## Data Id 📋
 
 Anime Dataset
 This dataset is named anime. The dataset contains a set of 12,294 records under 7 attributes:
@@ -41,7 +41,7 @@ This dataset is named rating. The dataset contains a set of 7,813,737 records un
 ### Aim of the Notebook:
 Building a better anime recommendation system based only on similiar anime.
 
-## Libraries
+## Libraries 📘
 
 code :- 
 ```
@@ -62,8 +62,8 @@ warnings.filterwarnings("always")
 warnings.filterwarnings("ignore")
 ```
 
-## . Preprocessing and Data Analysis
-### Import data from google drive.
+## . Preprocessing and Data Analysis 💻
+### Import data from google drive. 📂
 code :- 
 ```
 from google.colab import drive
@@ -84,6 +84,7 @@ rating_df = pd.read_csv('/content/drive/MyDrive/rating.csv' ,  on_bad_lines='ski
 rating_df.head()
 ```
 Output :- 
+
 ![2](https://github.com/023lawrence/Anime-recommendation/assets/66831315/35c66596-2045-45f4-9095-accf6459616e)
 
 ### Data shapes and info
@@ -95,9 +96,10 @@ print("\n" , "*"*50 , "\n Rating :- \n" )
 print(rating_df.info())
 ```
 Output :- 
+
 ![3](https://github.com/023lawrence/Anime-recommendation/assets/66831315/ee68bfd6-e92f-4b9a-a4b2-b67d6672fd3f)
 
-### Handling Missing values
+### Handling Missing values 🚫
 code :- 
 ```
 print("Anime_id missing values(%) \n")
@@ -106,7 +108,21 @@ print("rating missing values(%) \n")
 print(round(rating_df.isnull().sum().sort_values(ascending=False)/len(rating_df.index) , 4)*100)
 ```
 Output :- 
+
 ![4](https://github.com/023lawrence/Anime-recommendation/assets/66831315/90030721-a905-47b8-83a2-e86e32e784e9)
+
+code :- 
+```
+print(anime_df['type'].mode())
+print(anime_df['genre'].mode())
+```
+Output :- 
+
+![5](https://github.com/023lawrence/Anime-recommendation/assets/66831315/424a1b58-0c58-414e-ba67-7d7fcef99bdc)
+
+**Weirdly enough the mode value of genre is Hentai, the mode value of type is TV.**
+
+![tenor](https://github.com/023lawrence/Anime-recommendation/assets/66831315/2681c7f9-5493-4bf1-ad07-dd47eb16f689)
 
 ## . Cosine Similarity Model
 ## . Conclusion
