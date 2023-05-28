@@ -7,13 +7,13 @@ Welcome to the world of anime! In this project, we delve into the captivating re
 
 ![naruto - Imgur](https://github.com/023lawrence/Anime-recommendation/assets/66831315/d5820404-1b7e-4522-b2a3-432b40459436)
 
-### . Introduction
+## Introduction
 
 This data set contains information on user preference data from 73,516 users on 12,294 anime. Each user is able to add anime to their completed list and give it a rating and this data set is a compilation of those ratings.
 
 ![a0eeabadf50400a7ebd09ca29efc97db](https://github.com/023lawrence/Anime-recommendation/assets/66831315/86d1f109-a41c-4a9d-92bf-8b0fbe97bac4)
 
-### . Data Id
+## Data Id
 
 Anime Dataset
 This dataset is named anime. The dataset contains a set of 12,294 records under 7 attributes:
@@ -37,10 +37,22 @@ This dataset is named rating. The dataset contains a set of 7,813,737 records un
 | anime_id | the anime that this user has rated. |
 | rating	| rating out of 10 this user has assigned (-1 if the user watched without assigning) |
 
-### . Libraries
-### . Preprocessing and Data Analysis
-### . Cosine Similarity Model
-### . Conclusion
+
+### Aim of the Notebook:
+Building a better anime recommendation system based only on similiar anime.
+
+## Libraries
+Some basic Git commands are:
+```
+import os #paths to file
+import numpy as np # linear algebra
+import pandas as pd # data processing
+import warnings# warning filter
+import scipy as sp #pivot engineering
+```
+## . Preprocessing and Data Analysis
+## . Cosine Similarity Model
+## . Conclusion
 
 
 
