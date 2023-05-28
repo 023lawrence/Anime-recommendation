@@ -246,7 +246,7 @@ anime_recommendation('Dragon Ball Z')
 ```
 Output :- 
 
-![11](https://github.com/023lawrence/Anime-recommendation/assets/66831315/fe12403b-17ae-4ebb-8bc4-06d554d814ee)
+![WhatsApp Image 2023-05-28 at 8 04 19 AM](https://github.com/023lawrence/Anime-recommendation/assets/66831315/d3cb26a2-4e2a-48a5-813c-b7f66687bfa7)
 
 ## . Conclusion ✔
 
