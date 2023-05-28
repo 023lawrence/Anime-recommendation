@@ -42,15 +42,60 @@ This dataset is named rating. The dataset contains a set of 7,813,737 records un
 Building a better anime recommendation system based only on similiar anime.
 
 ## Libraries
-Some basic Git commands are:
 ```
 import os #paths to file
 import numpy as np # linear algebra
 import pandas as pd # data processing
 import warnings# warning filter
 import scipy as sp #pivot engineering
+
+#ML model
+from sklearn.metrics.pairwise import cosine_similarity
+
+#default theme and settings
+pd.options.display.max_columns
+
+#warning hadle
+warnings.filterwarnings("always")
+warnings.filterwarnings("ignore")
 ```
+
 ## . Preprocessing and Data Analysis
+### Import data from google drive.
+```
+from google.colab import drive
+drive.mount('/content/drive')
+```
+```
+anime_df = pd.read_csv('/content/drive/MyDrive/anime.csv')
+anime_df.head()
+```
+![1](https://github.com/023lawrence/Anime-recommendation/assets/66831315/652a724d-cf53-4922-b948-a3fddd7e9160)
+
+```
+rating_df = pd.read_csv('/content/drive/MyDrive/rating.csv' ,  on_bad_lines='skip') #on_bad_lines = 'skip' :- this will cause the offending lines to be skipped.
+rating_df.head()
+```
+![2](https://github.com/023lawrence/Anime-recommendation/assets/66831315/35c66596-2045-45f4-9095-accf6459616e)
+
+### Data shapes and info
+```
+print("Anime:- \n")
+print(anime_df.info())
+print("\n" , "*"*50 , "\n Rating :- \n" )
+print(rating_df.info())
+```
+![3](https://github.com/023lawrence/Anime-recommendation/assets/66831315/ee68bfd6-e92f-4b9a-a4b2-b67d6672fd3f)
+
+### Handling Missing values
+```
+print("Anime_id missing values(%) \n")
+print(round(anime_df.isnull().sum().sort_values(ascending=False)/len(anime_df.index) , 4)*100)
+print("rating missing values(%) \n")
+print(round(rating_df.isnull().sum().sort_values(ascending=False)/len(rating_df.index) , 4)*100)
+```
+![4](https://github.com/023lawrence/Anime-recommendation/assets/66831315/90030721-a905-47b8-83a2-e86e32e784e9)
+
 ## . Cosine Similarity Model
 ## . Conclusion
 
