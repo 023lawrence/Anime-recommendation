@@ -42,6 +42,8 @@ This dataset is named rating. The dataset contains a set of 7,813,737 records un
 Building a better anime recommendation system based only on similiar anime.
 
 ## Libraries
+
+code :- 
 ```
 import os #paths to file
 import numpy as np # linear algebra
@@ -62,38 +64,47 @@ warnings.filterwarnings("ignore")
 
 ## . Preprocessing and Data Analysis
 ### Import data from google drive.
+code :- 
 ```
 from google.colab import drive
 drive.mount('/content/drive')
 ```
+code :- 
 ```
 anime_df = pd.read_csv('/content/drive/MyDrive/anime.csv')
 anime_df.head()
 ```
+Output :- 
 ![1](https://github.com/023lawrence/Anime-recommendation/assets/66831315/652a724d-cf53-4922-b948-a3fddd7e9160)
 
+code :- 
 ```
 rating_df = pd.read_csv('/content/drive/MyDrive/rating.csv' ,  on_bad_lines='skip') #on_bad_lines = 'skip' :- this will cause the offending lines to be skipped.
 rating_df.head()
 ```
+Output :- 
 ![2](https://github.com/023lawrence/Anime-recommendation/assets/66831315/35c66596-2045-45f4-9095-accf6459616e)
 
 ### Data shapes and info
+code :- 
 ```
 print("Anime:- \n")
 print(anime_df.info())
 print("\n" , "*"*50 , "\n Rating :- \n" )
 print(rating_df.info())
 ```
+Output :- 
 ![3](https://github.com/023lawrence/Anime-recommendation/assets/66831315/ee68bfd6-e92f-4b9a-a4b2-b67d6672fd3f)
 
 ### Handling Missing values
+code :- 
 ```
 print("Anime_id missing values(%) \n")
 print(round(anime_df.isnull().sum().sort_values(ascending=False)/len(anime_df.index) , 4)*100)
 print("rating missing values(%) \n")
 print(round(rating_df.isnull().sum().sort_values(ascending=False)/len(rating_df.index) , 4)*100)
 ```
+Output :- 
 ![4](https://github.com/023lawrence/Anime-recommendation/assets/66831315/90030721-a905-47b8-83a2-e86e32e784e9)
 
 ## . Cosine Similarity Model
