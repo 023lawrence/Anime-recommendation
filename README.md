@@ -19,6 +19,7 @@ Anime Dataset
 This dataset is named anime. The dataset contains a set of 12,294 records under 7 attributes:
 
 | Column Name | Description |
+| --- | --- |
 | anime_id | myanimelist.net's unique id identifying an anime. |
 | name | full name of anime. |
 | genre | comma separated list of genres for this anime. |
@@ -31,6 +32,7 @@ Rating Dataset
 This dataset is named rating. The dataset contains a set of 7,813,737 records under 3 attributes:
 
 | Column Name| Description | 
+| --- | --- |
 | user_id | non identifiable randomly generated user id. | 
 | anime_id | the anime that this user has rated. |
 | rating	| rating out of 10 this user has assigned (-1 if the user watched without assigning) |
