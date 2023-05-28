@@ -75,6 +75,7 @@ anime_df = pd.read_csv('/content/drive/MyDrive/anime.csv')
 anime_df.head()
 ```
 Output :- 
+
 ![1](https://github.com/023lawrence/Anime-recommendation/assets/66831315/652a724d-cf53-4922-b948-a3fddd7e9160)
 
 code :- 
